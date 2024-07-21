@@ -6,5 +6,8 @@
 2. Run the python program until the URL: http://127.0.0.1:5000 appears in your vscode terminal
 <img width="1459" alt="" src="https://github.com/fidhera/Flask-app/blob/main/ss/Screenshot%202024-07-21%20232347.png">
 
-3. Copy the url and paste it in your browser. And enter
+3. Copy the url and paste it in your browser. And click enter
 <img width="1459" alt="" src="https://github.com/fidhera/Flask-app/blob/main/ss/Screenshot%202024-07-21%20233005.png">
+
+4. Click the blue button to see the json data
+<img width="1459" alt="" src="https://github.com/fidhera/Flask-app/blob/main/ss/ss%20no4.png">
