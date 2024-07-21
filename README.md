@@ -7,3 +7,4 @@
 <img width="1459" alt="" src="https://github.com/fidhera/Flask-app/blob/main/ss/Screenshot%202024-07-21%20232347.png">
 
 3. Copy the url and paste it in your browser. And enter
+<img width="1459" alt="" src="https://github.com/fidhera/Flask-app/blob/main/ss/Screenshot%202024-07-21%20233005.png">
