@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Mahasiswa</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Data Mahasiswa</h1>
+        
+        <a href="/" class="btnback">Kembali</a>
+        <ul>
+            {% for mahasiswa in data %}
+            <li class="lijarak">
+                <div class="kotak"> 
+                    <strong>ID:</strong> {{ mahasiswa.id }} <br>
+                    <strong>Nama:</strong> {{ mahasiswa.nama }} <br>
+                    <strong>Pendidikan:</strong> 
+                    <ul>
+                        {% for p in mahasiswa.pendidikan %}
+                        <li>Universitas: {{ p.universitas }}</li>
+                        <li>Jurusan: {{ p.jurusan }}</li>
+                        <li>Kelas: {{ p.kelas }}</li>
+                        <li>NPM: {{ p.npm }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="/add_student" class="btn">Tambahkan Data Mahasiswa</a>
+        <a href="/edit_student" class="btn">Edit Data Mahasiswa</a>
+        <a href="/del_student" class="btn">Hapus Data Mahasiswa</a>
+    </div>
+</body>
+</html>

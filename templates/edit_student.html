@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Data Mahasiswa</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Edit Data Mahasiswa</h1>
+    <form id="studentForm">
+        <label for="id">ID Mahasiswa:</label>
+        <input type="number" id="id" name="id" required><br><br>
+
+        <label for="nama">Nama:</label>
+        <input type="text" id="nama" name="nama" required><br><br>
+
+        <h3>Pendidikan:</h3>
+        <label for="universitas">Universitas:</label>
+        <input type="text" id="universitas" name="universitas" required><br><br>
+
+        <label for="jurusan">Jurusan:</label>
+        <input type="text" id="jurusan" name="jurusan" required><br><br>
+
+        <label for="kelas">Kelas:</label>
+        <input type="text" id="kelas" name="kelas" required><br><br>
+
+        <label for="npm">NPM:</label>
+        <input type="number" id="npm" name="npm" required><br><br>
+
+        <button type="button" onclick="loadData()">Tampilkan Data</button>
+        <button type="button" onclick="updateData()">Update</button>
+        <a href="/datajson" class="btnback">Kembali</a>
+    </form>
+
+    <script>
+        function loadData() {
+            const id = document.getElementById('id').value;
+
+            fetch(`/datajson/${id}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Mengisi formulir dengan data yang diambil
+                document.getElementById('nama').value = data.nama;
+                document.getElementById('universitas').value = data.pendidikan[0].universitas;
+                document.getElementById('jurusan').value = data.pendidikan[0].jurusan;
+                document.getElementById('kelas').value = data.pendidikan[0].kelas;
+                document.getElementById('npm').value = data.pendidikan[0].npm;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Data mahasiswa tidak ditemukan.');
+                document.getElementById('studentForm').reset();
+            });
+        }
+
+        function updateData() {
+            const id = document.getElementById('id').value;
+            const nama = document.getElementById('nama').value;
+            const universitas = document.getElementById('universitas').value;
+            const jurusan = document.getElementById('jurusan').value;
+            const kelas = document.getElementById('kelas').value;
+            const npm = document.getElementById('npm').value;
+
+            const data = {
+                id: parseInt(id),
+                nama: nama,
+                pendidikan: [
+                    {
+                        universitas: universitas,
+                        jurusan: jurusan,
+                        kelas: kelas,
+                        npm: parseInt(npm)
+                    }
+                ]
+            };
+
+            fetch(`/datajson/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert('Data mahasiswa berhasil diperbarui!');
+                document.getElementById('studentForm').reset();
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan saat memperbarui data mahasiswa.');
+            });
+        }
+    </script>
+</body>
+</html>
