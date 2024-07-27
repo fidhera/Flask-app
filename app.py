@@ -1,18 +1,22 @@
+# Endpoint Flask Beserta Filtering
+
+
+# import library
 from flask import Flask, jsonify, request, render_template
 
 app = Flask(__name__)
 
-# Data JSON
+# data JSON mahasiswaa 
 dataMahasiswa = [
     {
         "id": 1,  
         "nama": "Rizky",
         "pendidikan": [
             {
-                "universitas": "Universitas Gunadarma",
+                "universitas": "Gunadarma",
                 "jurusan": "Informatika",
-                "kelas": '1IA06',
-                "npm": 51423007
+                "kelas": '1',
+                "npm": 51004200
             }
         ]
     },
@@ -21,10 +25,10 @@ dataMahasiswa = [
         "nama": "Zechan",
         "pendidikan": [
             {
-                "universitas": "Universitas Gunadarma",
+                "universitas": "Gunadarma",
                 "jurusan": "Informatika",
-                "kelas": '1IA06',
-                "npm": 51423039
+                "kelas": '1',
+                "npm": 51004201
             }
         ]
     },
@@ -33,10 +37,10 @@ dataMahasiswa = [
         "nama": "Naurah",
         "pendidikan": [
             {
-                "universitas": "Universitas Gunadarma",
+                "universitas": "Gunadarma",
                 "jurusan": "Informatika",
-                "kelas": '1IA06',
-                "npm": 51423089
+                "kelas": '1',
+                "npm": 51004203
             }
         ]
     },
@@ -45,10 +49,10 @@ dataMahasiswa = [
         "nama": "Noval",
         "pendidikan": [
             {
-                "universitas": "Universitas Gunadarma",
+                "universitas": "Gunadarma",
                 "jurusan": "Informatika",
-                "kelas": '1IA06',
-                "npm": 51423119
+                "kelas": '1',
+                "npm": 51004204
             }
         ]
     },
@@ -57,10 +61,10 @@ dataMahasiswa = [
         "nama": "Raffael",
         "pendidikan": [
             {
-                "universitas": "Universitas Gunadarma",
+                "universitas": "Gunadarma",
                 "jurusan": "Informatika",
-                "kelas": '1IA06',
-                "npm": 51423180
+                "kelas": '1',
+                "npm": 51004205
             }
         ]
     },
@@ -69,77 +73,92 @@ dataMahasiswa = [
         "nama": "Razi",
         "pendidikan": [
             {
-                "universitas": "Universitas Gunadarma",
+                "universitas": "Gunadarma",
                 "jurusan": "Informatika",
-                "kelas": '1IA06',
-                "npm": 51423257
+                "kelas": '1',
+                "npm": 51004206
             }
         ]
     },
     {
-    "id": 7,  
-    "nama": "Thomas",
-    "pendidikan": [
-        {
-            "universitas": "Universitas Gunadarma",
-            "jurusan": "Informatika",
-            "kelas": "1IA06",
-            "npm": 51423300
-        }
-    ]
-}
-
+        "id": 7,  
+        "nama": "Thomas",
+        "pendidikan": [
+            {
+                "universitas": "Gunadarma",
+                "jurusan": "Informatika",
+                "kelas": "1",
+                "npm": 51004207
+            }
+        ]
+    }
 ]
 
-# Primary Route / Home
+# primary route / home / tampilan awalnyaa
 @app.route('/')
 def home():
+    # ngerender template HTML index.html buat route root
     return render_template('index.html')
 
-# Endpoint JSON Access / menampilkan semua nama
+# endpoint JSON access / menampilkan semua nama
 @app.route('/datajson', methods=['GET', 'POST'])
 def dataJson():
     if request.method == 'POST':
+        # mengambil data JSON dari permintaan dan menambahkannya ke dataMahasiswa
         new_data = request.get_json()
         dataMahasiswa.append(new_data)
         return jsonify({"result": "Data added successfully"}), 201
+    # ngerender template HTML datajson.html dengan dataMahasiswa
     return render_template('datajson.html', data=dataMahasiswa)
 
-# ID Filtering JSON
+# crudnya ini pake filtering endpoint buat ngambil id user
 @app.route('/datajson/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 def filteringId(id):
+    
+    # nyarii data mahasiswa berdasarkan ID
     data = next((item for item in dataMahasiswa if item["id"] == id), None)
     if request.method == 'GET':
+        # mengembalikan data mahasiswa jika ditemukann
         if data:
             return jsonify({"result": data})
+        # mengembalikan pesan kesalahan jikaa data tidak ditemukan
         return jsonify({"Error": "Data not found"}), 404
+    
     elif request.method == 'PUT':
+        # MEMPERBARUI data mahasiswa jika ditemukan
         updated_data = request.get_json()
         if data:
             index = dataMahasiswa.index(data)
             dataMahasiswa[index] = updated_data
             return jsonify({"result": "Data updated successfully"})
         return jsonify({"Error": "Data not found"}), 404
+    
     elif request.method == 'DELETE':
+        # NGEHAPUS data mahasiswa jika ditemukan
         if data:
             dataMahasiswa.remove(data)
             return jsonify({"result": "Data deleted successfully"})
         return jsonify({"Error": "Data not found"}), 404
 
-# Route untuk menambahkan dataMahasiswa form HTML
+
+# Route buat nambahin dataMahasiswa form HTML
 @app.route('/add_student', methods=['GET'])
 def add_student():
+    # ngerender template HTML add_student.html untuk NAMBAHIN data mahasiswa
     return render_template('add_student.html')
 
-# Route untuk menampilkan form HTML penghapusan by ID
+# Route buatt menampilkan form HTML penghapusan
 @app.route('/del_student', methods=['GET'])
 def delete_student_by_id():
+    # ngerender template HTML del_student.html untuk HAPUS data mahasiswa berdasarkan ID
     return render_template('del_student.html')
 
-# Endpoint untuk menghapus data mahasiswa berdasarkan ID
+# Endpoint buat menghapuss data mahasiswa berdasarkan ID
 @app.route('/datajson/<int:id>', methods=['DELETE'])
 def delete_student(id):
+    # ncari data mahasiswa berdasarkan ID
     data = next((item for item in dataMahasiswa if item["id"] == id), None)
+    # nghapuss data mahasiswa kalo ditemukan
     if data:
         dataMahasiswa.remove(data)
         return jsonify({"result": "Data deleted successfully"}), 200
@@ -148,17 +167,20 @@ def delete_student(id):
 # Route untuk menampilkan form HTML edit data
 @app.route('/edit_student', methods=['GET'])
 def edit_student():
+    # ngerenderr template HTML edit_student.html untuk EDIT data mahasiswa
     return render_template('edit_student.html')
 
 # Endpoint untuk mendapatkan data mahasiswa berdasarkan ID
 @app.route('/datajson/<int:id>', methods=['GET'])
 def get_student(id):
+    # Mencari data mahasiswa berdasarkan ID
     data = next((item for item in dataMahasiswa if item["id"] == id), None)
+    # memperbarui data mahasiswa jika ditemukannn
     if data:
         return jsonify(data), 200
     return jsonify({"error": "Data not found"}), 404
 
-# Endpoint untuk memperbarui data mahasiswa berdasarkan ID
+# Endpoint buat memperbarui data mahasiswa berdasarkann ID
 @app.route('/datajson/<int:id>', methods=['PUT'])
 def update_student(id):
     data = next((item for item in dataMahasiswa if item["id"] == id), None)
@@ -172,5 +194,7 @@ def update_student(id):
         return jsonify({"result": "Data updated successfully"}), 200
     return jsonify({"error": "Data not found"}), 404
 
+# menjalankan aplikasi Flask dalam mode debug
 if __name__ == '__main__':
     app.run(debug=True)
+
