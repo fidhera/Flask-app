@@ -22,9 +22,9 @@
 <br/>
 <img width="1459" alt="" src="https://github.com/fidhera/Flask-app/blob/main/ss/addallafter.png">
 <br/>
-<img width="1459" alt="" src="https://github.com/fidhera/Flask-app/blob/main/ss/addallnotif.png">
+<img width="1459" alt="" src="https://github.com/fidhera/Flask-app/blob/main/ss/addnotif.png">
 <br/>
-<img width="1459" alt="" src="https://github.com/fidhera/Flask-app/blob/main/ss/addallcheck.png">
+<img width="1459" alt="" src="https://github.com/fidhera/Flask-app/blob/main/ss/addcheck.png">
 
 
 
