@@ -26,5 +26,12 @@
 <br/>
 <img width="1459" alt="" src="https://github.com/fidhera/Flask-app/blob/main/ss/addcheck.png">
 
-
-
+<br/>
+6. Click blue button "Edit Data Mahasiswa" to edit data to json
+<img width="1459" alt="" src="https://github.com/fidhera/Flask-app/blob/main/ss/editall.png">
+<br/>
+<img width="1459" alt="" src="https://github.com/fidhera/Flask-app/blob/main/ss/editallafter.png">
+<br/>
+<img width="1459" alt="" src="https://github.com/fidhera/Flask-app/blob/main/ss/editnotif.png">
+<br/>
+<img width="1459" alt="" src="https://github.com/fidhera/Flask-app/blob/main/ss/editcheck.png">
