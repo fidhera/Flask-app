@@ -45,10 +45,10 @@
 <hr/>
 <br/>
 7. Click blue button "Hapus Data Mahasiswa" to delete data to json
-<img width="1459" alt="" src="https://github.com/fidhera/Flask-app/blob/main/ss/delltall.png">
+<img width="1459" alt="" src="https://github.com/fidhera/Flask-app/blob/main/ss/deltall.png">
 <br/>
-<img width="1459" alt="" src="https://github.com/fidhera/Flask-app/blob/main/ss/dellallafter.png">
+<img width="1459" alt="" src="https://github.com/fidhera/Flask-app/blob/main/ss/delallafter.png">
 <br/>
-<img width="1459" alt="" src="https://github.com/fidhera/Flask-app/blob/main/ss/dellnotif.png">
+<img width="1459" alt="" src="https://github.com/fidhera/Flask-app/blob/main/ss/delnotif.png">
 <br/>
-<img width="1459" alt="" src="https://github.com/fidhera/Flask-app/blob/main/ss/dellcheck.png">
+<img width="1459" alt="" src="https://github.com/fidhera/Flask-app/blob/main/ss/delcheck.png">
